@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 declare global {
   interface Window {
     __mementoMoriLoaded?: boolean;
+    __mmPaused?: boolean;
   }
 }
 
@@ -10,13 +11,48 @@ export default function HeroPrism() {
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.__mementoMoriLoaded) return;
-    window.__mementoMoriLoaded = true;
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
 
-    const s = document.createElement("script");
-    s.src = "/lib/memento-mori.js";
-    s.async = true;
-    document.body.appendChild(s);
+    if (!window.__mementoMoriLoaded) {
+      window.__mementoMoriLoaded = true;
+      const inject = () => {
+        const s = document.createElement("script");
+        s.src = "/lib/memento-mori.js";
+        s.async = true;
+        document.body.appendChild(s);
+      };
+      const ric: typeof requestIdleCallback | undefined = (window as any).requestIdleCallback;
+      if (ric) ric(inject, { timeout: 800 });
+      else setTimeout(inject, 200);
+    }
+
+    // Pause when scrolled offscreen
+    const el = wrapRef.current;
+    let visible = true;
+    const sync = () => {
+      window.__mmPaused = !visible || document.hidden;
+    };
+    const io = el
+      ? new IntersectionObserver(
+          ([entry]) => {
+            visible = entry.isIntersecting;
+            sync();
+          },
+          { threshold: 0.01 }
+        )
+      : null;
+    if (io && el) io.observe(el);
+    const onVis = () => sync();
+    document.addEventListener("visibilitychange", onVis);
+
+    return () => {
+      io?.disconnect();
+      document.removeEventListener("visibilitychange", onVis);
+      window.__mmPaused = false;
+    };
   }, []);
 
   return (
