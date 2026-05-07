@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { GENERAL_MEETING_DATE_DISPLAY } from "@/lib/site-config";
 import HeroPrism from "@/components/HeroPrism";
 
@@ -47,25 +48,58 @@ export default function Hero() {
 }
 
 export function HeroNav() {
+  const joinRef = useRef<HTMLAnchorElement | null>(null);
+  const [joinOffset, setJoinOffset] = useState(88);
+
+  useEffect(() => {
+    const joinElement = joinRef.current;
+
+    if (!joinElement) {
+      return;
+    }
+
+    const updateJoinOffset = () => {
+      setJoinOffset(joinElement.getBoundingClientRect().width / 2 + 40);
+    };
+
+    updateJoinOffset();
+
+    const resizeObserver = new ResizeObserver(updateJoinOffset);
+    resizeObserver.observe(joinElement);
+    window.addEventListener("resize", updateJoinOffset);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateJoinOffset);
+    };
+  }, []);
+
   return (
     <nav className="border-b border-border/60">
-      <div className="container max-w-5xl flex items-center justify-center gap-10 py-5">
-        {navLinks.map((l) => {
-          const isJoin = l.href === "#join";
-          return (
-            <a
-              key={l.href}
-              href={l.href}
-              className={
-                isJoin
-                  ? "join-pill text-xs font-sans uppercase tracking-[0.25em] font-semibold"
-                  : "text-xs font-sans uppercase tracking-[0.25em] text-muted-foreground hover:text-primary transition-colors"
-              }
-            >
-              {l.label}
-            </a>
-          );
-        })}
+      <div className="container relative flex max-w-5xl items-center justify-center py-5">
+        <a
+          href={navLinks[0].href}
+          className="absolute top-1/2 text-xs font-sans uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-primary"
+          style={{ left: `calc(50% - ${joinOffset}px)`, transform: "translate(-100%, -50%)" }}
+        >
+          {navLinks[0].label}
+        </a>
+
+        <a
+          ref={joinRef}
+          href={navLinks[1].href}
+          className="join-pill text-xs font-sans font-semibold uppercase tracking-[0.25em]"
+        >
+          {navLinks[1].label}
+        </a>
+
+        <a
+          href={navLinks[2].href}
+          className="absolute top-1/2 text-xs font-sans uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-primary"
+          style={{ left: `calc(50% + ${joinOffset}px)`, transform: "translateY(-50%)" }}
+        >
+          {navLinks[2].label}
+        </a>
       </div>
     </nav>
   );
