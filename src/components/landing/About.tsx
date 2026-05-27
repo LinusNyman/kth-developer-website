@@ -44,24 +44,22 @@ export default function About() {
         <div className="relative p-8 sm:p-10 pb-16 lg:col-start-1 lg:row-start-1 lg:row-span-2 flex flex-col border-b border-border lg:border-b-0 lg:border-r lg:border-border">
           <span className="bracket-label">Mission</span>
           <p className="mt-6 text-base text-muted-foreground leading-relaxed">
-            KTH Developer is an upcoming student association at KTH Royal
-            Institute of Technology in Stockholm — to be formally established on{" "}
+            A student association at KTH, founding{" "}
             <strong className="text-foreground">
               {GENERAL_MEETING_DATE_DISPLAY}
             </strong>
-            . We exist to build digital sovereignty through software,
-            infrastructure and self-hosted services that students own, operate
-            and ship together.
+            . We will build software, infrastructure and self-hosted services —
+            owned, operated and shipped by students.
           </p>
           <p className="mt-6 text-base text-muted-foreground leading-relaxed">
-            Our founding projects: building a{" "}
-            <strong className="text-foreground">self-hosted server</strong> for
-            every application imaginable, and building a{" "}
+            Founding projects:{" "}
+            <strong className="text-foreground">a self-hosted server</strong>{" "}
+            and{" "}
             <strong className="text-foreground">
-              YC Bookface-style social platform for technical students across
-              Europe
-            </strong>{" "}
-            in partnership with the European Industrial Society.
+              a social platform for technical students across Europe
+            </strong>
+            , built with KTHIS. With the latest tools, any project is reachable
+            — at high velocity, for anyone.
           </p>
         </div>
 

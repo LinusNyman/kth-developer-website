@@ -23,15 +23,19 @@ const faqs = [
   },
   {
     q: "Do I need previous software experience?",
-    a: "No. Curiosity and commitment matter more than prior experience. Expect onboarding tracks for beginners and deeper projects for advanced members.",
+    a: "No. Curiosity and commitment matter more than prior experience. We'll have onboarding tracks for beginners and deeper projects for advanced members.",
+  },
+  {
+    q: "Do you use AI / LLM coding tools?",
+    a: "Yes — LLM coding assistants (Claude Code, Cursor, Copilot and similar) will be standard tools in the stack, not afterthoughts. The aim is to ship faster and tackle more ambitious projects, while still owning the code we're responsible for.",
   },
   {
     q: "What kinds of projects will we work on?",
-    a: "Real, shippable applications: web apps, internal tools, developer tooling, self-hosted services and the infrastructure that runs them. Members propose projects too — bring an idea, and if it fits the mission, it joins the portfolio.",
+    a: "Real, shippable applications: web apps, internal tools, developer tooling, self-hosted services and the infrastructure that runs them. Members will propose projects too — bring an idea, and if it fits the mission, it'll join the portfolio.",
   },
   {
     q: "What does \"digital sovereignty\" mean here?",
-    a: "Owning the stack end-to-end: open-source software, self-hosted services, our own servers, no lock-in to third-party platforms. We learn by running things ourselves.",
+    a: "Owning the stack end-to-end: open-source software, self-hosted services, our own servers, no lock-in to third-party platforms. We'll learn by running things ourselves.",
   },
   {
     q: "When and where will you meet?",
@@ -39,7 +43,7 @@ const faqs = [
   },
   {
     q: "What roles will be available?",
-    a: "Society leadership will be the Chair and Vice Chair. Below them: Development Leads owning technical projects (apps, infra, self-hosting), and Operations Leads running media, branding, events, partnerships and facilities. See Open Positions for specific roles, or send a general application.",
+    a: "Society leadership will be the Chair and Vice Chair. Below them: Development Leads will own technical projects (apps, infra, self-hosting), and Operations Leads will run media, branding, events, partnerships and facilities. See Open Positions for specific roles, or send a general application.",
   },
   {
     q: "How do I apply?",
@@ -47,7 +51,7 @@ const faqs = [
   },
   {
     q: "What happens after I apply?",
-    a: "Applications are read continuously, and shortlisted applicants will be invited to a conversation. The application process is handled by KTH Industrial Society.",
+    a: "Applications will be read continuously, and shortlisted applicants will be invited to a conversation. The application process is handled by KTH Industrial Society.",
   },
   {
     q: "Is there a deadline?",
@@ -59,7 +63,7 @@ const faqs = [
   },
   {
     q: "What language do you operate in?",
-    a: "English. Meetings, materials and applications are all in English so the society is open to international students at KTH.",
+    a: "English. Meetings, materials and applications will all be in English so the society is open to international students at KTH.",
   },
 ];
 
